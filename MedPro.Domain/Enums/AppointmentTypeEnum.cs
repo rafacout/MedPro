@@ -1,4 +1,4 @@
-﻿namespace MedPro.Domain.Entity;
+﻿namespace MedPro.Domain.Enums;
 
 public enum AppointmentTypeEnum
 {

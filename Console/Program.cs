@@ -1,30 +1,14 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-using MedPro.Domain.Entity;
+using MedPro.Domain.Entities;
+using MedPro.Domain.Enums;
 
 Console.WriteLine("Hello, MedPro!");
 
-// create a new instance of the Doctor with all the properties
-var doctor = new Doctor
-{
-    Id = Guid.NewGuid(),
-    Name = "Dr. John Doe",
-    Email = "drjohn@gmail.com",
-    PhoneNumber = "123456789",
-    DocumentNumber = "123456789",
-    BirthDate = new DateTime(1980, 1, 1),
-    Address = new Address
-    {
-        Street = "123 Main St",
-        City = "Miami",
-        State = "FL",
-        ZipCode = "33101"
-    },
-    Speciality = new Speciality
-    {
-        Id = Guid.NewGuid(),
-        Name = "Cardiologist",
-        Description = "Heart Specialist"
-    },
-    BloodTypeEnum = BloodTypeEnum.ABPositive,
-};
+// create a new instance of the Doctor with all the properties using the constructor
+var doctor = new Doctor("John", "Doe", new DateTime(1983, 7, 24), "995656565", "email@gmail.com",
+    "document", BloodTypeEnum.BPositive,
+    new Address("Street", "number", "Complement", "City", "State", "Country", "ZipCode"),
+    new Speciality("Nutricionist", "Description of speciality"), "CRM");    
+    
+
