@@ -1,4 +1,6 @@
-﻿public class Appointment
+﻿namespace MedPro.Domain.Entity;
+
+public class Appointment
 {
     public Guid Id { get; set; }
     public DateTime BookDateTime { get; set; }
@@ -9,5 +11,5 @@
     public Insurance Insurance { get; set; }
     public DateTime StartDateTime { get; set; }
     public DateTime EndDateTime { get; set; }
-    public AppointmentType AppointmentType { get; set; }
+    public AppointmentTypeEnum AppointmentTypeEnum { get; set; }
 }

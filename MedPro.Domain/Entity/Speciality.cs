@@ -1,4 +1,6 @@
-﻿public class Speciality
+﻿namespace MedPro.Domain.Entity;
+
+public class Speciality
 {
     public Guid Id { get; set; }
     public string Name { get; set; }

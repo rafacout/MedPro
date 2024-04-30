@@ -1,4 +1,6 @@
-﻿public enum BloodType
+﻿namespace MedPro.Domain.Entity;
+
+public enum BloodTypeEnum
 {
     APositive = 0,
     ANegative = 1,

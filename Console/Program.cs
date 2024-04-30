@@ -1,5 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+using MedPro.Domain.Entity;
+
 Console.WriteLine("Hello, MedPro!");
 
 // create a new instance of the Doctor with all the properties
@@ -24,5 +26,5 @@ var doctor = new Doctor
         Name = "Cardiologist",
         Description = "Heart Specialist"
     },
-    BloodType = BloodType.ABPositive,
+    BloodTypeEnum = BloodTypeEnum.ABPositive,
 };

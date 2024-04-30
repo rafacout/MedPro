@@ -1,4 +1,6 @@
-﻿public class Address
+﻿namespace MedPro.Domain.Entity;
+
+public class Address
 {
     public string Street { get; set; }
     public string Number { get; set; }
