@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedPro.Domain", "MedPro.Dom
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedPro.Console", "Console\MedPro.Console.csproj", "{28830288-41D9-4394-8EEA-F7C429D7C991}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedPro.Api", "MedPro.Api\MedPro.Api.csproj", "{B12374B0-B374-461F-9563-DD88A639E2C2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{28830288-41D9-4394-8EEA-F7C429D7C991}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28830288-41D9-4394-8EEA-F7C429D7C991}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28830288-41D9-4394-8EEA-F7C429D7C991}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B12374B0-B374-461F-9563-DD88A639E2C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B12374B0-B374-461F-9563-DD88A639E2C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B12374B0-B374-461F-9563-DD88A639E2C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B12374B0-B374-461F-9563-DD88A639E2C2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
