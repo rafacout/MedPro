@@ -1,13 +1,17 @@
+using MedPro.Api.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace MedPro.Api.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class WeatherForecastController : ControllerBase
+public class TestController : ControllerBase
 {
-    public WeatherForecastController()
+    private readonly OpeningTimeOption _openingTimeOption;
+    public TestController(IOptions<OpeningTimeOption> openingTimeOption)
     {
+        _openingTimeOption = openingTimeOption.Value;
     }
 
     [HttpGet("{id}")]
@@ -16,6 +20,12 @@ public class WeatherForecastController : ControllerBase
         return Content($"Get success: {id}");
     }
 
+    [HttpGet]
+    public IActionResult GetOpeningTime()
+    {
+        return Content($"Start at: {_openingTimeOption.StartAt}");
+    }
+    
     [HttpPost]
     public IActionResult Post([FromBody] WeatherForecast weather)
     {
