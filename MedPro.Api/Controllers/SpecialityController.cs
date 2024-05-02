@@ -10,7 +10,7 @@ namespace MedPro.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class SpecialityController : ControllerBase
     {
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
