@@ -17,12 +17,29 @@ public class SpecialityService : ISpecialityService
 
     public List<SpecialityViewModel> GetAll()
     {
-        throw new NotImplementedException();
+        var models = _dbContext.Specialities.Select(x => new SpecialityViewModel()
+        {
+            Id = x.Id,
+            Name = x.Name,
+            Description = x.Description
+        }).ToList();
+
+        return models;
     }
 
-    public SpecialityViewModel GetById(Guid id)
+    public SpecialityViewModel? GetById(Guid id)
     {
-        throw new NotImplementedException();
+        var speciality = _dbContext.Specialities.SingleOrDefault(x => x.Id == id);
+
+        if (speciality == null)
+            return null;
+        
+        return new SpecialityViewModel()
+        {
+            Id = speciality.Id,
+            Name = speciality.Name,
+            Description = speciality.Description
+        };
     }
 
     public Guid Create(SpecialityInputModel model)
@@ -36,13 +53,24 @@ public class SpecialityService : ISpecialityService
         return speciality.Id;
     }
 
-    public void Update(SpecialityInputModel model)
+    public void Update(Guid id, SpecialityInputModel model)
     {
-        throw new NotImplementedException();
+        var speciality = _dbContext.Specialities.SingleOrDefault(x => x.Id == id);
+        
+        if (speciality != null)
+        {
+            speciality.Update(model.Name, model.Description);
+            _dbContext.SaveChanges();
+        }
     }
 
     public void Delete(Guid id)
     {
-        throw new NotImplementedException();
+        var speciality = _dbContext.Specialities.SingleOrDefault(x => x.Id == id);
+
+        if (speciality != null)
+            _dbContext.Specialities.Remove(speciality);
+        
+        _dbContext.SaveChanges();
     }
 }

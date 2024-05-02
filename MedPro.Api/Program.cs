@@ -1,4 +1,7 @@
 using MedPro.Api.Models;
+using MedPro.Application.Services.Implementations;
+using MedPro.Application.Services.Interfaces;
+using MedPro.Infrastructure.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +14,10 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.Configure<OpeningTimeOption>(builder.Configuration.GetSection("OpeningTime"));
 
+builder.Services.AddSingleton<MedProDbContext>();
 
+builder.Services.AddScoped<ISpecialityService, SpecialityService>();
+    
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
