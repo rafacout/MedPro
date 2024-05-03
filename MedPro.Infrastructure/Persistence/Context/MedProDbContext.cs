@@ -11,48 +11,8 @@ public class MedProDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(MedProDbContext).Assembly);
         base.OnModelCreating(modelBuilder);
-        
-        modelBuilder.Entity<Appointment>()
-            .HasKey(p => p.Id);
-
-        modelBuilder.Entity<Appointment>()
-            .HasOne(p => p.Doctor)
-            .WithMany(p => p.Appointments)
-            .HasForeignKey(p => p.DoctorId);
-
-        modelBuilder.Entity<Appointment>()
-            .HasOne(p => p.Patient)
-            .WithMany(p => p.Appointments)
-            .HasForeignKey(p => p.PatientId);
-        
-        modelBuilder.Entity<Appointment>()
-            .HasOne(p => p.Service)
-            .WithMany(p => p.Appointments)
-            .HasForeignKey(p => p.ServiceId);
-
-        modelBuilder.Entity<Appointment>()
-            .HasOne(p => p.Insurance);
-        
-        
-        modelBuilder.Entity<Doctor>()
-            .HasKey(p => p.Id);
-        
-        modelBuilder.Entity<Doctor>()
-            .HasOne(p => p.Speciality)
-            .WithMany(p => p.Doctors);
-
-        modelBuilder.Entity<Patient>()
-            .HasKey(p => p.Id);
-        
-        modelBuilder.Entity<Patient>()
-            .HasOne(p => p.Address);
-        
-        modelBuilder.Entity<Insurance>()
-            .HasKey(p => p.Id);
-        
-        modelBuilder.Entity<Service>()
-            .HasKey(p => p.Id);
     }
 
     public MedProDbContext()
