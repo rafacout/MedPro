@@ -9,9 +9,9 @@ public class Person : BaseEntity
     {
     }
     
-    public Person(string name, string lastName, DateTime birthDate, string phoneNumber, string email, string documentNumber, BloodTypeEnum bloodTypeEnum, string address)
+    public Person(string firstName, string lastName, DateTime birthDate, string phoneNumber, string email, string documentNumber, BloodTypeEnum bloodTypeEnum, string address)
     {
-        Name = name;
+        FirstFirstName = firstName;
         LastName = lastName;
         BirthDate = birthDate;
         PhoneNumber = phoneNumber;
@@ -20,7 +20,7 @@ public class Person : BaseEntity
         BloodTypeEnum = bloodTypeEnum;
         Address = address;
     }
-    public string Name { get; private set; }
+    public string FirstFirstName { get; private set; }
     
     public string LastName { get; private set; }
     public DateTime BirthDate { get; private set; }

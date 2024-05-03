@@ -8,9 +8,9 @@ public class Doctor : Person
     {
     }
     
-    public Doctor(string name, string lastName, DateTime birthDate, string phoneNumber, string email,
+    public Doctor(string firstName, string lastName, DateTime birthDate, string phoneNumber, string email,
         string documentNumber, BloodTypeEnum bloodTypeEnum, string address, Speciality speciality, string crm) : base(
-        name, lastName, birthDate, phoneNumber, email, documentNumber, bloodTypeEnum, address)
+        firstName, lastName, birthDate, phoneNumber, email, documentNumber, bloodTypeEnum, address)
     {
         Speciality = speciality;
         CRM = crm;
