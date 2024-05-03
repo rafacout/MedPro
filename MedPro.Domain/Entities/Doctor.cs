@@ -17,8 +17,9 @@ public class Doctor : Person
     }
 
     public Guid SpecialityId { get; set; }
-    public Speciality Speciality { get; private set; }
     public string CRM { get; private set; }
+    
+    public Speciality Speciality { get; private set; }
 
     public List<Appointment> Appointments { get; set; }
 }
