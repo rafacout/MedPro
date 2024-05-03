@@ -2,6 +2,7 @@ using MedPro.Api.Models;
 using MedPro.Application.Services.Implementations;
 using MedPro.Application.Services.Interfaces;
 using MedPro.Infrastructure.Persistence.Context;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,9 +13,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.Configure<OpeningTimeOption>(builder.Configuration.GetSection("OpeningTime"));
+builder.Services.AddDbContext<MedProDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
 
-builder.Services.AddSingleton<MedProDbContext>();
+builder.Services.Configure<OpeningTimeOption>(builder.Configuration.GetSection("OpeningTime"));
 
 builder.Services.AddScoped<ISpecialityService, SpecialityService>();
     
@@ -32,7 +36,5 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-
-app.MapGet("/hi", () => "Hello World!");
 
 app.Run();
