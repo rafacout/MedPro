@@ -2,7 +2,7 @@
 using MedPro.Application.Services.Interfaces;
 using MedPro.Application.ViewModels;
 using MedPro.Domain.Entities;
-using MedPro.Infrastructure.Persistence;
+using MedPro.Infrastructure.Persistence.Context;
 
 namespace MedPro.Application.Services.Implementations;
 

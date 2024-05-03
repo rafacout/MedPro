@@ -1,4 +1,6 @@
-﻿namespace MedPro.Domain.Entities;
+﻿using MedPro.Domain.Entities.Base;
+
+namespace MedPro.Domain.Entities;
 
 public class Speciality : BaseEntity
 {
@@ -10,6 +12,8 @@ public class Speciality : BaseEntity
     
     public string Name { get; private set; }
     public string Description { get; private set; }
+
+    public List<Doctor> Doctors { get; set; }
     
     public void Update(string name, string description)
     {

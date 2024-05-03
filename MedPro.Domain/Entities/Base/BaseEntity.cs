@@ -1,4 +1,4 @@
-﻿namespace MedPro.Domain.Entities;
+﻿namespace MedPro.Domain.Entities.Base;
 
 public abstract class BaseEntity
 {

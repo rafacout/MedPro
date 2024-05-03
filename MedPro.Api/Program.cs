@@ -1,7 +1,7 @@
 using MedPro.Api.Models;
 using MedPro.Application.Services.Implementations;
 using MedPro.Application.Services.Interfaces;
-using MedPro.Infrastructure.Persistence;
+using MedPro.Infrastructure.Persistence.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -1,4 +1,6 @@
-﻿namespace MedPro.Domain.Entities;
+﻿using MedPro.Domain.Entities.Base;
+
+namespace MedPro.Domain.Entities;
 
 public class User : BaseEntity
 {

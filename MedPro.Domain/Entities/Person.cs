@@ -1,10 +1,11 @@
-﻿using MedPro.Domain.Enums;
+﻿using MedPro.Domain.Entities.Base;
+using MedPro.Domain.Enums;
 
 namespace MedPro.Domain.Entities;
 
 public class Person : BaseEntity
 {
-    public Person(string name, string lastName, DateTime birthDate, string phoneNumber, string email, string documentNumber, BloodTypeEnum bloodTypeEnum, Address address)
+    public Person(string name, string lastName, DateTime birthDate, string phoneNumber, string email, string documentNumber, BloodTypeEnum bloodTypeEnum, string address)
     {
         Name = name;
         LastName = lastName;
@@ -23,5 +24,5 @@ public class Person : BaseEntity
     public string Email { get; private set; }
     public string DocumentNumber { get; private set; }
     public BloodTypeEnum BloodTypeEnum { get; private set; }
-    public Address Address { get; private set; }
+    public string Address { get; private set; }
 }
