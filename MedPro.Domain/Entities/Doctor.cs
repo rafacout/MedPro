@@ -4,6 +4,10 @@ namespace MedPro.Domain.Entities;
 
 public class Doctor : Person
 {
+    public Doctor() : base()
+    {
+    }
+    
     public Doctor(string name, string lastName, DateTime birthDate, string phoneNumber, string email,
         string documentNumber, BloodTypeEnum bloodTypeEnum, string address, Speciality speciality, string crm) : base(
         name, lastName, birthDate, phoneNumber, email, documentNumber, bloodTypeEnum, address)

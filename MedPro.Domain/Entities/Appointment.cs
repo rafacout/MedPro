@@ -5,6 +5,9 @@ namespace MedPro.Domain.Entities;
 
 public class Appointment : BaseEntity
 {
+    public Appointment()
+    {
+    }
     public Appointment(DateTime bookDateTime, Doctor doctor, Patient patient, Service service, string description,
         Insurance insurance, DateTime startDateTime, DateTime endDateTime, AppointmentTypeEnum appointmentTypeEnum)
     {

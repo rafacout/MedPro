@@ -5,6 +5,10 @@ namespace MedPro.Domain.Entities;
 
 public class Person : BaseEntity
 {
+    public Person()
+    {
+    }
+    
     public Person(string name, string lastName, DateTime birthDate, string phoneNumber, string email, string documentNumber, BloodTypeEnum bloodTypeEnum, string address)
     {
         Name = name;

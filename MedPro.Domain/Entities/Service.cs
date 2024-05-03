@@ -4,6 +4,10 @@ namespace MedPro.Domain.Entities;
 
 public class Service : BaseEntity
 {
+    public Service()
+    {
+    }
+    
     public Service(string name, decimal amount, int duration)
     {
         Name = name;

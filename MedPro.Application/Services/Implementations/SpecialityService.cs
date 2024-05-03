@@ -68,9 +68,9 @@ public class SpecialityService : ISpecialityService
     {
         var speciality = _dbContext.Specialities.SingleOrDefault(x => x.Id == id);
 
-        if (speciality != null)
+        if (speciality != null) {
             _dbContext.Specialities.Remove(speciality);
-        
-        _dbContext.SaveChanges();
+            _dbContext.SaveChanges();
+        }
     }
 }

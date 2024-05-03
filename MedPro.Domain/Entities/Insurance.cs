@@ -4,6 +4,10 @@ namespace MedPro.Domain.Entities;
 
 public class Insurance : BaseEntity
 {
+    public Insurance()
+    {
+    }
+    
     public Insurance(string name, string description)
     {
         Name = name;
