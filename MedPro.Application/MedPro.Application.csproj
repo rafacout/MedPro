@@ -11,4 +11,12 @@
       <ProjectReference Include="..\MedPro.Infrastructure\MedPro.Infrastructure.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Commands\Speciality\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="MediatR" Version="11.1.0" />
+    </ItemGroup>
+
 </Project>

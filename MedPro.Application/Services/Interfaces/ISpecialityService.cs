@@ -7,7 +7,6 @@ public interface ISpecialityService
 {
     List<SpecialityViewModel> GetAll();
     SpecialityViewModel? GetById(Guid id);
-    Guid Create(SpecialityInputModel model);
     void Update(Guid id, SpecialityInputModel model);
     void Delete(Guid id);
 }

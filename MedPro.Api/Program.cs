@@ -1,6 +1,6 @@
+using MediatR;
 using MedPro.Api.Models;
-using MedPro.Application.Services.Implementations;
-using MedPro.Application.Services.Interfaces;
+using MedPro.Application.Commands.CreateSpeciality;
 using MedPro.Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,14 +13,14 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddMediatR(typeof(CreateSpecialityCommand).Assembly);
+
 builder.Services.AddDbContext<MedProDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
 builder.Services.Configure<OpeningTimeOption>(builder.Configuration.GetSection("OpeningTime"));
-
-builder.Services.AddScoped<ISpecialityService, SpecialityService>();
     
 var app = builder.Build();
 

@@ -1,5 +1,9 @@
-using MedPro.Application.InputModels;
-using MedPro.Application.Services.Interfaces;
+using MediatR;
+using MedPro.Application.Commands.CreateSpeciality;
+using MedPro.Application.Commands.DeleteSpeciality;
+using MedPro.Application.Commands.UpdateSpeciality;
+using MedPro.Application.Queries.Speciality.GetAllSpecialities;
+using MedPro.Application.Queries.Speciality.GetSpecialityById;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MedPro.Api.Controllers
@@ -8,54 +12,54 @@ namespace MedPro.Api.Controllers
     [ApiController]
     public class SpecialityController : ControllerBase
     {
-        private readonly ISpecialityService _specialityService;
+        private readonly IMediator _mediator;
 
-        public SpecialityController(ISpecialityService specialityService)
+        public SpecialityController(IMediator mediator)
         {
-            _specialityService = specialityService;
+            _mediator = mediator;
         }
         
         [HttpGet("{id}")]
-        public IActionResult GetById(Guid id)
+        public async Task<IActionResult> GetById(Guid id)
         {
-            var speciality = _specialityService.GetById(id);
+            var query = new GetSpecialityByIdQuery(id);
             
-            if (speciality == null)
-            {
-                return NotFound();
-            }
-            
+            var speciality = await _mediator.Send(query);
+
             return Ok(speciality);
         }
         
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            var specialities = _specialityService.GetAll();
+            var query = new GetAllSpecialitiesQuery();
             
-            return Ok(specialities);
+            var list = await _mediator.Send(query);
+            
+            return Ok(list);
         }
         
         [HttpPost]
-        public IActionResult Post([FromBody] SpecialityInputModel inputModel)
+        public async Task<IActionResult> Post([FromBody] CreateSpecialityCommand command)
         {
-            var id = _specialityService.Create(inputModel);
+            var id = await _mediator.Send(command);
 
-            return CreatedAtAction(nameof(Post), new { id = id }, inputModel);
+            return CreatedAtAction(nameof(Post), new { id = id }, command);
         }
         
         [HttpPut("{id}")]
-        public IActionResult Put(Guid id, [FromBody] SpecialityInputModel inputModel)
+        public async Task<IActionResult> Put(Guid id, [FromBody] UpdateSpecialityCommand command)
         {
-            _specialityService.Update(id, inputModel);
+            await _mediator.Send(command);
             
             return NoContent();
         }
         
         [HttpDelete("{id}")]
-        public IActionResult Delete(Guid id)
+        public async Task<IActionResult> Delete(Guid id)
         {
-            _specialityService.Delete(id);
+            var command = new DeleteSpecialityCommand(id);
+            await _mediator.Send(command);
             return NoContent();
         }
     }
