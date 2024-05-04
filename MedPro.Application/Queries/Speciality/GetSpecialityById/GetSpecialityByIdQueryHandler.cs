@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using MedPro.Application.ViewModels;
+using MedPro.Domain.Repositories;
 using MedPro.Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,16 +8,15 @@ namespace MedPro.Application.Queries.Speciality.GetSpecialityById;
 
 public class GetSpecialityByIdQueryHandler : IRequestHandler<GetSpecialityByIdQuery, SpecialityViewModel>
 {
-    private readonly MedProDbContext _dbContext;
-
-    public GetSpecialityByIdQueryHandler(MedProDbContext dbContext)
+    private readonly ISpecialityRepository _specialityRepository;
+    public GetSpecialityByIdQueryHandler(ISpecialityRepository specialityRepository)
     {
-        _dbContext = dbContext;
+        _specialityRepository = specialityRepository;
     }
     
     public async Task<SpecialityViewModel> Handle(GetSpecialityByIdQuery request, CancellationToken cancellationToken)
     {
-        var speciality = await _dbContext.Specialities.SingleOrDefaultAsync(x => x.Id == request.Id);
+        var speciality = await _specialityRepository.GetByIdAsync(request.Id);
 
         if (speciality == null)
             return null;

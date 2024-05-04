@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using MedPro.Domain.Entities;
+using MedPro.Domain.Repositories;
 using MedPro.Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,23 +8,17 @@ namespace MedPro.Application.Commands.DeleteSpeciality;
 
 public class DeleteSpecialityCommandHandler : IRequestHandler<DeleteSpecialityCommand, Unit>
 {
-    private readonly MedProDbContext _dbContext;
+    private readonly ISpecialityRepository _specialityRepository;
 
-    public DeleteSpecialityCommandHandler(MedProDbContext dbContext)
+    public DeleteSpecialityCommandHandler(ISpecialityRepository specialityRepository)
     {
-        _dbContext = dbContext;
+        _specialityRepository = specialityRepository;
     }
 
     public async Task<Unit> Handle(DeleteSpecialityCommand command, CancellationToken cancellationToken)
     {
-        var speciality = await _dbContext.Specialities.SingleOrDefaultAsync(x => x.Id == command.Id, cancellationToken);
-
-        if (speciality == null)
-            throw new ApplicationException($"Speciality with ID {command.Id} not found.");
-
-        _dbContext.Specialities.Remove(speciality);
-        await _dbContext.SaveChangesAsync(cancellationToken);
-
+        await _specialityRepository.DeleteAsync(command.Id);
+        
         return Unit.Value;
     }
 }
