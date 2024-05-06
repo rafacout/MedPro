@@ -1,6 +1,8 @@
-﻿namespace MedPro.Api.Models;
+﻿using MediatR;
 
-public class CreateUserModel
+namespace MedPro.Application.Commands.User.CreateUser;
+
+public class CreateUserCommand : IRequest<Guid>
 {
     public string UserName { get; set; }
     public string Password { get; set; }

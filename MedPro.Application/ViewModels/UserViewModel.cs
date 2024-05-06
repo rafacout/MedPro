@@ -1,7 +1,8 @@
-﻿namespace MedPro.Api.Models;
+﻿namespace MedPro.Application.ViewModels;
 
-public class CreateUserModel
+public class UserViewModel
 {
+    public Guid Id { get; set; }
     public string UserName { get; set; }
     public string Password { get; set; }
     public string Role { get; set; }

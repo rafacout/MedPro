@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MedPro.Application.Queries.Speciality.GetSpecialityById;
 
-public class GetSpecialityByIdQueryHandler : IRequestHandler<GetSpecialityByIdQuery, SpecialityViewModel>
+public class GetSpecialityByIdQueryHandler : IRequestHandler<GetSpecialityByIdQuery, SpecialityViewModel?>
 {
     private readonly ISpecialityRepository _specialityRepository;
     public GetSpecialityByIdQueryHandler(ISpecialityRepository specialityRepository)
@@ -14,7 +14,7 @@ public class GetSpecialityByIdQueryHandler : IRequestHandler<GetSpecialityByIdQu
         _specialityRepository = specialityRepository;
     }
     
-    public async Task<SpecialityViewModel> Handle(GetSpecialityByIdQuery request, CancellationToken cancellationToken)
+    public async Task<SpecialityViewModel?> Handle(GetSpecialityByIdQuery request, CancellationToken cancellationToken)
     {
         var speciality = await _specialityRepository.GetByIdAsync(request.Id);
 

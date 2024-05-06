@@ -25,4 +25,5 @@ public class MedProDbContext : DbContext
     public DbSet<Insurance> Insurances { get; set; }
     public DbSet<Service> Services { get; set; }
     public DbSet<Speciality> Specialities { get; set; }
+    public DbSet<User> Users { get; set; }
 }

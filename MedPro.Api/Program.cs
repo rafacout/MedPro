@@ -6,6 +6,7 @@ using MedPro.Api.Models;
 using MedPro.Application.Commands.CreateSpeciality;
 using MedPro.Application.Validators;
 using MedPro.Domain.Repositories;
+using MedPro.Infrastructure.Auth;
 using MedPro.Infrastructure.Persistence.Context;
 using MedPro.Infrastructure.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -29,6 +30,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddMediatR(typeof(CreateSpecialityCommand).Assembly);
 
 builder.Services.AddScoped<ISpecialityRepository, SpecialityRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 builder.Services.AddDbContext<MedProDbContext>(options =>
 {
