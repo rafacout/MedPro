@@ -1,6 +1,10 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using MediatR;
+using MedPro.Api.Filters;
 using MedPro.Api.Models;
 using MedPro.Application.Commands.CreateSpeciality;
+using MedPro.Application.Validators;
 using MedPro.Domain.Repositories;
 using MedPro.Infrastructure.Persistence.Context;
 using MedPro.Infrastructure.Persistence.Repositories;
@@ -9,8 +13,16 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddControllers(options =>
+{
+    options.Filters.Add<ValidationFilter>();
+});
 
-builder.Services.AddControllers();
+//add fluent validation
+builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddFluentValidationClientsideAdapters();
+builder.Services.AddValidatorsFromAssemblyContaining<CreateSpecialityCommandValidator>();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
