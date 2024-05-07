@@ -12,4 +12,6 @@ public interface IUserRepository
     Task UpdateAsync(User user);
     
     Task DeleteAsync(Guid id);
+
+    Task<User?> GetByEmailAndPasswordAsync(string email, string hashPassword);
 }

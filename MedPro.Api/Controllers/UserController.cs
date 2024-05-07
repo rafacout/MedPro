@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using MedPro.Application.Commands.User.CreateUser;
 using MedPro.Application.Commands.User.DeleteUser;
+using MedPro.Application.Commands.User.LoginUser;
 using MedPro.Application.Commands.User.UpdateUser;
 using MedPro.Application.Queries.User.GetUserById;
 using Microsoft.AspNetCore.Mvc;
@@ -47,4 +48,17 @@ public class UserController : ControllerBase
         await _mediator.Send(command);
         return NoContent();
     }
+    
+    [HttpPut("login")]
+    public async Task<IActionResult> Login([FromBody] LoginUserCommand command)
+    {
+        var userViewModel = await _mediator.Send(command);
+        
+        if (userViewModel == null)
+        {
+            return Unauthorized();
+        }
+        
+        return Ok(userViewModel);
+    } 
 }

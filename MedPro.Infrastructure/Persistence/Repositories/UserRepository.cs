@@ -41,4 +41,11 @@ public class UserRepository : IUserRepository
             await _dbContext.SaveChangesAsync();
         }
     }
+
+    public async Task<User?> GetByEmailAndPasswordAsync(string email, string hashPassword)
+    {
+        var user = await _dbContext.Users.FirstOrDefaultAsync(s => s.UserName == email && s.Password == hashPassword);
+
+        return user;
+    }
 }
