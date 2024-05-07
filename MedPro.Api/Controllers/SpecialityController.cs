@@ -4,12 +4,14 @@ using MedPro.Application.Commands.DeleteSpeciality;
 using MedPro.Application.Commands.UpdateSpeciality;
 using MedPro.Application.Queries.Speciality.GetAllSpecialities;
 using MedPro.Application.Queries.Speciality.GetSpecialityById;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MedPro.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "admin, receptionist, doctor")]
     public class SpecialityController : ControllerBase
     {
         private readonly IMediator _mediator;

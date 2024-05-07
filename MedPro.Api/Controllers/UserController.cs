@@ -4,12 +4,14 @@ using MedPro.Application.Commands.User.DeleteUser;
 using MedPro.Application.Commands.User.LoginUser;
 using MedPro.Application.Commands.User.UpdateUser;
 using MedPro.Application.Queries.User.GetUserById;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MedPro.Api.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
 public class UserController : ControllerBase
 {
     private readonly IMediator _mediator;
@@ -17,13 +19,6 @@ public class UserController : ControllerBase
     public UserController(IMediator mediator)
     {
         _mediator = mediator;
-    }
-
-    [HttpPost]
-    public async Task<IActionResult> Post([FromBody] CreateUserCommand command)
-    {
-        var id = await _mediator.Send(command);
-        return CreatedAtAction(nameof(Post), new { id = id });
     }
 
     [HttpGet("{id}")]
@@ -49,7 +44,16 @@ public class UserController : ControllerBase
         return NoContent();
     }
     
+    [HttpPost]
+    [AllowAnonymous]
+    public async Task<IActionResult> Post([FromBody] CreateUserCommand command)
+    {
+        var id = await _mediator.Send(command);
+        return CreatedAtAction(nameof(Post), new { id = id });
+    }
+    
     [HttpPut("login")]
+    [AllowAnonymous]
     public async Task<IActionResult> Login([FromBody] LoginUserCommand command)
     {
         var userViewModel = await _mediator.Send(command);
