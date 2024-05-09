@@ -7,11 +7,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedPro.Domain", "MedPro.Dom
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedPro.Console", "Console\MedPro.Console.csproj", "{28830288-41D9-4394-8EEA-F7C429D7C991}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedPro.Api", "MedPro.Api\MedPro.Api.csproj", "{B12374B0-B374-461F-9563-DD88A639E2C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedPro.Api", "MedPro.Api\MedPro.Api.csproj", "{B12374B0-B374-461F-9563-DD88A639E2C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedPro.Infrastructure", "MedPro.Infrastructure\MedPro.Infrastructure.csproj", "{B3EC12B6-E525-4935-979D-B980878B9B8D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedPro.Infrastructure", "MedPro.Infrastructure\MedPro.Infrastructure.csproj", "{B3EC12B6-E525-4935-979D-B980878B9B8D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedPro.Application", "MedPro.Application\MedPro.Application.csproj", "{9E6B95B0-48E3-4D38-AAFC-5C20E2DDA255}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedPro.Application", "MedPro.Application\MedPro.Application.csproj", "{9E6B95B0-48E3-4D38-AAFC-5C20E2DDA255}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedPro.UnitTest", "MedPro.UnitTest\MedPro.UnitTest.csproj", "{9D3F5CB3-40DF-4632-87F9-C0D326F2338D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{49A91A61-9DFD-4E06-9C9C-4D313531E175}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{844ADAD1-A93C-4FA5-BC30-F52C3A632175}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{8E5CBB65-8FA0-4D3D-8794-A78BEF1600E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedPro.ArchitectureTest", "MedPro.ArchitectureTest\MedPro.ArchitectureTest.csproj", "{6F66CFA0-9674-49F5-8E0B-53C5C788B514}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,8 +49,28 @@ Global
 		{9E6B95B0-48E3-4D38-AAFC-5C20E2DDA255}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E6B95B0-48E3-4D38-AAFC-5C20E2DDA255}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E6B95B0-48E3-4D38-AAFC-5C20E2DDA255}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D3F5CB3-40DF-4632-87F9-C0D326F2338D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D3F5CB3-40DF-4632-87F9-C0D326F2338D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D3F5CB3-40DF-4632-87F9-C0D326F2338D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D3F5CB3-40DF-4632-87F9-C0D326F2338D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F66CFA0-9674-49F5-8E0B-53C5C788B514}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F66CFA0-9674-49F5-8E0B-53C5C788B514}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F66CFA0-9674-49F5-8E0B-53C5C788B514}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F66CFA0-9674-49F5-8E0B-53C5C788B514}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{802DA0B5-9E7B-425F-9F77-EDD5535AC3C1} = {844ADAD1-A93C-4FA5-BC30-F52C3A632175}
+		{28830288-41D9-4394-8EEA-F7C429D7C991} = {844ADAD1-A93C-4FA5-BC30-F52C3A632175}
+		{B12374B0-B374-461F-9563-DD88A639E2C2} = {844ADAD1-A93C-4FA5-BC30-F52C3A632175}
+		{B3EC12B6-E525-4935-979D-B980878B9B8D} = {844ADAD1-A93C-4FA5-BC30-F52C3A632175}
+		{9E6B95B0-48E3-4D38-AAFC-5C20E2DDA255} = {844ADAD1-A93C-4FA5-BC30-F52C3A632175}
+		{9D3F5CB3-40DF-4632-87F9-C0D326F2338D} = {8E5CBB65-8FA0-4D3D-8794-A78BEF1600E9}
+		{6F66CFA0-9674-49F5-8E0B-53C5C788B514} = {8E5CBB65-8FA0-4D3D-8794-A78BEF1600E9}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {61D51428-7EB9-46CD-A4B3-715B546D3B96}
 	EndGlobalSection
 EndGlobal

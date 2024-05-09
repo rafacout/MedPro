@@ -1,7 +1,8 @@
 .vs/
-.vs/MedPro/
 bin/
 obj/
 /packages/
-riderModule.iml
 /_ReSharper.Caches/
+riderModule.iml
+*.v2
+*.suo

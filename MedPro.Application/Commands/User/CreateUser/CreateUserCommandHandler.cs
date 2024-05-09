@@ -19,7 +19,6 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Guid>
     {
         var hashedPassword = _authService.ComputeSha256Hash(request.Password);
         var user = new Domain.Entities.User(request.UserName, hashedPassword, request.Role);
-        await _userRepository.CreateAsync(user);
-        return user.Id;        
+        return await _userRepository.CreateAsync(user);
     }
 }
