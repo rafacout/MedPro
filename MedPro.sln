@@ -16,6 +16,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedPro.UnitTest", "MedPro.UnitTest\MedPro.UnitTest.csproj", "{9D3F5CB3-40DF-4632-87F9-C0D326F2338D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{49A91A61-9DFD-4E06-9C9C-4D313531E175}"
+	ProjectSection(SolutionItems) = preProject
+		azure-pipelines.yml = azure-pipelines.yml
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{844ADAD1-A93C-4FA5-BC30-F52C3A632175}"
 EndProject
