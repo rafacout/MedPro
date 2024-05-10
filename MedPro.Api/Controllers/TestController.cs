@@ -17,7 +17,7 @@ public class TestController : ControllerBase
     [HttpGet("{id}")]
     public IActionResult GetStatus(int id)
     {
-        return Content($"Get success: {id}");
+        return Content($"Get success: {id} !");
     }
 
     [HttpGet]
