@@ -5,7 +5,7 @@ namespace MedPro.Domain.Repositories;
 
 public interface ISpecialityRepository
 {
-    Task<IEnumerable<Speciality>> GetAllAsync();
+    Task<IEnumerable<Speciality>> GetAllAsync(string query);
     
     Task<Speciality?> GetByIdAsync(Guid id);
     

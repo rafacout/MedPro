@@ -18,12 +18,13 @@ public class GetAllSpecialitiesQueryHandler : IRequestHandler<GetAllSpecialities
 
     public async Task<IEnumerable<SpecialityViewModel>> Handle(GetAllSpecialitiesQuery request, CancellationToken cancellationToken)
     {
-        var specialities = await _specialityRepository.GetAllAsync();
+        var specialities = await _specialityRepository.GetAllAsync(request.Query);
     
         var viewModel = specialities.Select(speciality => new SpecialityViewModel
         {
             Id = speciality.Id,
-            Name = speciality.Name
+            Name = speciality.Name,
+            Description = speciality.Description
         });
         
         return viewModel;

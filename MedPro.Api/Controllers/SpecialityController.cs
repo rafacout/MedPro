@@ -11,7 +11,7 @@ namespace MedPro.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "admin, receptionist, doctor")]
+    //[Authorize(Roles = "admin, receptionist, doctor")]
     public class SpecialityController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -24,19 +24,19 @@ namespace MedPro.Api.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(Guid id)
         {
-            var query = new GetSpecialityByIdQuery(id);
+            var specialityByIdQuery = new GetSpecialityByIdQuery(id);
             
-            var speciality = await _mediator.Send(query);
+            var speciality = await _mediator.Send(specialityByIdQuery);
 
             return Ok(speciality);
         }
         
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll(string? query)
         {
-            var query = new GetAllSpecialitiesQuery();
+            var specialitiesQuery = new GetAllSpecialitiesQuery(query);
             
-            var list = await _mediator.Send(query);
+            var list = await _mediator.Send(specialitiesQuery);
             
             return Ok(list);
         }

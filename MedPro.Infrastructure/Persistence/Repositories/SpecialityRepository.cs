@@ -14,9 +14,16 @@ public class SpecialityRepository : ISpecialityRepository
         _dbContext = dbContext;
     }
     
-    public async Task<IEnumerable<Speciality>> GetAllAsync()
+    public async Task<IEnumerable<Speciality>> GetAllAsync(string query)
     {
-        return await _dbContext.Specialities.ToListAsync();
+        IQueryable<Speciality> specialities = _dbContext.Specialities;
+
+        if (!string.IsNullOrEmpty(query))
+        {
+            specialities = specialities.Where(x => x.Name.Contains(query) || x.Description.Contains(query));
+        }
+        
+        return await specialities.ToListAsync();
     }
 
     public async Task<Speciality?> GetByIdAsync(Guid id)
