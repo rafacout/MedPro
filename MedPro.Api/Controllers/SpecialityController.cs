@@ -32,11 +32,9 @@ namespace MedPro.Api.Controllers
         }
         
         [HttpGet]
-        public async Task<IActionResult> GetAll(string? query)
+        public async Task<IActionResult> GetAll([FromQuery] GetAllSpecialitiesQuery queryRequest)
         {
-            var specialitiesQuery = new GetAllSpecialitiesQuery(query);
-            
-            var list = await _mediator.Send(specialitiesQuery);
+            var list = await _mediator.Send(queryRequest);
             
             return Ok(list);
         }

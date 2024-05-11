@@ -1,11 +1,12 @@
 ﻿
 using MedPro.Domain.Entities;
+using MedPro.Domain.Models;
 
 namespace MedPro.Domain.Repositories;
 
 public interface ISpecialityRepository
 {
-    Task<IEnumerable<Speciality>> GetAllAsync(string query);
+    Task<PaginationResult<Speciality>> GetAllAsync(string? query, int page = 1);
     
     Task<Speciality?> GetByIdAsync(Guid id);
     

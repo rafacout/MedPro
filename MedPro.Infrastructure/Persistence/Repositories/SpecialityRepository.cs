@@ -1,4 +1,5 @@
 ﻿using MedPro.Domain.Entities;
+using MedPro.Domain.Models;
 using MedPro.Domain.Repositories;
 using MedPro.Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
@@ -8,13 +9,14 @@ namespace MedPro.Infrastructure.Persistence.Repositories;
 public class SpecialityRepository : ISpecialityRepository
 {
     private readonly MedProDbContext _dbContext;
+    private const int PAGE_SIZE = 2;
 
     public SpecialityRepository(MedProDbContext dbContext)
     {
         _dbContext = dbContext;
     }
     
-    public async Task<IEnumerable<Speciality>> GetAllAsync(string query)
+    public async Task<PaginationResult<Speciality>> GetAllAsync(string? query, int page = 1)
     {
         IQueryable<Speciality> specialities = _dbContext.Specialities;
 
@@ -23,7 +25,7 @@ public class SpecialityRepository : ISpecialityRepository
             specialities = specialities.Where(x => x.Name.Contains(query) || x.Description.Contains(query));
         }
         
-        return await specialities.ToListAsync();
+        return await specialities.GetPaged(page, PAGE_SIZE);
     }
 
     public async Task<Speciality?> GetByIdAsync(Guid id)

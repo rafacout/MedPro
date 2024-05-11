@@ -1,14 +1,11 @@
 ﻿using MediatR;
 using MedPro.Application.ViewModels;
+using MedPro.Domain.Models;
 
 namespace MedPro.Application.Queries.Speciality.GetAllSpecialities;
 
-public class GetAllSpecialitiesQuery : IRequest<IEnumerable<SpecialityViewModel>>
+public class GetAllSpecialitiesQuery : IRequest<PaginationResult<SpecialityViewModel>>
 {
-    public GetAllSpecialitiesQuery(string? query)
-    {
-        Query = query;
-    }
-    
     public string? Query { get; set; }
+    public int Page { get; set; } = 1;
 }

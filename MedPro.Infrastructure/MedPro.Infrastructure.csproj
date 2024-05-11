@@ -22,4 +22,16 @@
       </PackageReference>
     </ItemGroup>
 
+    <ItemGroup>
+      <Compile Remove="Persistence\Models\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="Persistence\Models\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Persistence\Models\**" />
+    </ItemGroup>
+
 </Project>
