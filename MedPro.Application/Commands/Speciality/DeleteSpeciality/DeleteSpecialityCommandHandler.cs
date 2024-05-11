@@ -2,23 +2,24 @@
 using MedPro.Domain.Entities;
 using MedPro.Domain.Repositories;
 using MedPro.Infrastructure.Persistence.Context;
+using MedPro.Infrastructure.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace MedPro.Application.Commands.DeleteSpeciality;
 
 public class DeleteSpecialityCommandHandler : IRequestHandler<DeleteSpecialityCommand, Unit>
 {
-    private readonly ISpecialityRepository _specialityRepository;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public DeleteSpecialityCommandHandler(ISpecialityRepository specialityRepository)
+    public DeleteSpecialityCommandHandler(IUnitOfWork unitOfWork)
     {
-        _specialityRepository = specialityRepository;
+        _unitOfWork = unitOfWork;
     }
 
     public async Task<Unit> Handle(DeleteSpecialityCommand command, CancellationToken cancellationToken)
     {
-        await _specialityRepository.DeleteAsync(command.Id);
-        
+        await _unitOfWork.Users.DeleteAsync(command.Id);
+        await _unitOfWork.CompleteAsync();
         return Unit.Value;
     }
 }

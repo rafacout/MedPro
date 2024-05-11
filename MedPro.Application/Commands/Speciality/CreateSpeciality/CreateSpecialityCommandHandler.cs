@@ -2,23 +2,23 @@
 using MedPro.Domain.Entities;
 using MedPro.Domain.Repositories;
 using MedPro.Infrastructure.Persistence.Context;
+using MedPro.Infrastructure.Persistence.Repositories;
 
 namespace MedPro.Application.Commands.CreateSpeciality;
 
 public class CreateSpecialityCommandHandler : IRequestHandler<CreateSpecialityCommand, Guid>
 {
-    private readonly ISpecialityRepository _specialityRepository;
-    public CreateSpecialityCommandHandler(ISpecialityRepository specialityRepository)
+    private readonly IUnitOfWork _unitOfWork;
+    public CreateSpecialityCommandHandler(IUnitOfWork unitOfWork)
     {
-        _specialityRepository = specialityRepository;
+        _unitOfWork = unitOfWork;
     }
     
     public async Task<Guid> Handle(CreateSpecialityCommand request, CancellationToken cancellationToken)
     {
         var speciality = new Speciality(request.Name, request.Description);
-
-        var guid = await _specialityRepository.CreateAsync(speciality);
-
-        return guid;
+        var id = await _unitOfWork.Specialities.CreateAsync(speciality);
+        await _unitOfWork.CompleteAsync();
+        return id;
     }
 }

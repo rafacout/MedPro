@@ -22,14 +22,12 @@ public class UserRepository : IUserRepository
     public async Task<Guid> CreateAsync(User user)
     {
         await _dbContext.Users.AddAsync(user);
-        await _dbContext.SaveChangesAsync();
         return user.Id;
     }
 
     public async Task UpdateAsync(User user)
     {
         _dbContext.Users.Update(user);
-        await _dbContext.SaveChangesAsync();
     }
 
     public async Task DeleteAsync(Guid id)
@@ -38,7 +36,6 @@ public class UserRepository : IUserRepository
 
         if (user != null) { 
             _dbContext.Users.Remove(user);
-            await _dbContext.SaveChangesAsync();
         }
     }
 

@@ -1,25 +1,26 @@
 ﻿using MediatR;
 using MedPro.Domain.Repositories;
+using MedPro.Infrastructure.Persistence.Repositories;
 
 namespace MedPro.Application.Commands.UpdateSpeciality;
 
 public class UpdateSpecialityCommandHandler : IRequestHandler<UpdateSpecialityCommand, Unit>
 {
-    private readonly ISpecialityRepository _specialityRepository;
-
-    public UpdateSpecialityCommandHandler(ISpecialityRepository specialityRepository)
+    private readonly IUnitOfWork _unitOfWork;
+    public UpdateSpecialityCommandHandler(IUnitOfWork unitOfWork)
     {
-        _specialityRepository = specialityRepository;
+        _unitOfWork = unitOfWork;
     }
 
     public async Task<Unit> Handle(UpdateSpecialityCommand request, CancellationToken cancellationToken)
     {
-        var speciality = await _specialityRepository.GetByIdAsync(request.Id);
+        var speciality = await _unitOfWork.Specialities.GetByIdAsync(request.Id);
 
         if (speciality != null)
         {
             speciality.Update(request.Name, request.Description);
-            await _specialityRepository.UpdateAsync(speciality);
+            await _unitOfWork.Specialities.UpdateAsync(speciality);
+            await _unitOfWork.CompleteAsync();
         }
 
         return Unit.Value;

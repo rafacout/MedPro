@@ -2,6 +2,7 @@
 using MedPro.Application.Commands.User.CreateUser;
 using MedPro.Domain.Repositories;
 using MedPro.Infrastructure.Auth;
+using MedPro.Infrastructure.Persistence.Repositories;
 using Moq;
 
 namespace MedPro.UnitTest.Commands.User.CreateUser;
@@ -14,13 +15,13 @@ public class CreateUserCommandHandlerTest
     public async Task User_CreateUser_Success()
     {
         //Arrange
-        var userRepositoryMock = new Mock<IUserRepository>();
+        var unitOfWorkMock = new Mock<IUnitOfWork>();
         var authServiceMock = new Mock<IAuthService>();
 
         var user = new MedPro.Domain.Entities.User("rafacout@gmail.com", "123456", "admin");
         
-        userRepositoryMock.Setup(x =>
-            x.CreateAsync(user).Result)
+        unitOfWorkMock.Setup(x =>
+            x.Users.CreateAsync(user).Result)
             .Returns(Guid.NewGuid());
 
         authServiceMock.Setup(x => x.ComputeSha256Hash(user.Password))
@@ -33,7 +34,7 @@ public class CreateUserCommandHandlerTest
             Role = "admin"
         };
 
-        var userCommandHandler = new CreateUserCommandHandler(userRepositoryMock.Object, authServiceMock.Object);
+        var userCommandHandler = new CreateUserCommandHandler(authServiceMock.Object, unitOfWorkMock.Object);
 
         //Act
         var result = await userCommandHandler.Handle(request, new CancellationToken());
@@ -42,6 +43,6 @@ public class CreateUserCommandHandlerTest
         Assert.IsType<Guid>(result);
         //Assert.NotEqual(Guid.Empty, result);
         
-        userRepositoryMock.Verify(x => x.CreateAsync(It.IsAny<MedPro.Domain.Entities.User>()), Times.Once);
+        unitOfWorkMock.Verify(x => x.Users.CreateAsync(It.IsAny<MedPro.Domain.Entities.User>()), Times.Once);
     }
 }

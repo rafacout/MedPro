@@ -36,14 +36,12 @@ public class SpecialityRepository : ISpecialityRepository
     public async Task<Guid> CreateAsync(Speciality speciality)
     {
         await _dbContext.Specialities.AddAsync(speciality);
-        await _dbContext.SaveChangesAsync();
         return speciality.Id;
     }
 
     public async Task UpdateAsync(Speciality speciality)
     {
         _dbContext.Specialities.Update(speciality);
-        await _dbContext.SaveChangesAsync();
     }
 
     public async Task DeleteAsync(Guid id)
@@ -52,7 +50,6 @@ public class SpecialityRepository : ISpecialityRepository
 
         if (speciality != null) { 
             _dbContext.Specialities.Remove(speciality);
-            await _dbContext.SaveChangesAsync();
         }
     }
 }
