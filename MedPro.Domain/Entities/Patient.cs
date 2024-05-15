@@ -8,9 +8,9 @@ public class Patient : Person
     {
     }
     
-    public Patient(string firstName, string lastName, DateTime birthDate, string phoneNumber, string email,
+    public Patient(Guid userId, string firstName, string lastName, DateTime birthDate, string phoneNumber, string email,
         string documentNumber, BloodTypeEnum bloodTypeEnum, string address, decimal heigth, decimal weigth) : base(
-        firstName, lastName, birthDate, phoneNumber, email, documentNumber, bloodTypeEnum, address)
+        userId, firstName, lastName, birthDate, phoneNumber, email, documentNumber, bloodTypeEnum, address)
     {
         Heigth = heigth;
         Weigth = weigth;

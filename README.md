@@ -9,7 +9,7 @@ And create a container
 
 
 Add a new migrations
- dotnet ef migrations add Initial -s ../MedPro.Api/MedPro.Api.csproj -o ./Persistence/Migrations 
+ dotnet ef migrations add XXX -s ../MedPro.Api/MedPro.Api.csproj -o ./Persistence/Migrations 
 
 Apply the migrations
  dotnet ef database update -s ../MedPro.Api/MedPro.Api.csproj 
