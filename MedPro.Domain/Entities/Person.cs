@@ -17,7 +17,7 @@ public class Person : BaseEntity
     public Person(Guid userId, string firstName, string lastName, DateTime birthDate, string phoneNumber, string email, string documentNumber, BloodTypeEnum bloodTypeEnum, string address)
     {
         UserId = userId;
-        FirstFirstName = firstName;
+        FirstName = firstName;
         LastName = lastName;
         BirthDate = birthDate;
         PhoneNumber = phoneNumber;
@@ -27,13 +27,13 @@ public class Person : BaseEntity
         Address = address;
     }
 
-    public Guid UserId { get; private set; }
-    public string FirstFirstName { get; private set; }
-    public string LastName { get; private set; }
-    public DateTime BirthDate { get; private set; }
-    public string PhoneNumber { get; private set; }
-    public string Email { get; private set; }
-    public string DocumentNumber { get; private set; }
-    public BloodTypeEnum BloodTypeEnum { get; private set; }
-    public string Address { get; private set; }
+    public Guid UserId { get; protected set; }
+    public string FirstName { get; protected set; }
+    public string LastName { get; protected set; }
+    public DateTime BirthDate { get; protected set; }
+    public string PhoneNumber { get; protected set; }
+    public string Email { get; protected set; }
+    public string DocumentNumber { get; protected set; }
+    public BloodTypeEnum BloodTypeEnum { get; protected set; }
+    public string Address { get; protected set; }
 }

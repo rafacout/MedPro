@@ -9,7 +9,7 @@ namespace MedPro.Infrastructure.Persistence.Repositories;
 public class SpecialityRepository : ISpecialityRepository
 {
     private readonly MedProDbContext _dbContext;
-    private const int PAGE_SIZE = 2;
+    private const int PAGE_SIZE = 10;
 
     public SpecialityRepository(MedProDbContext dbContext)
     {

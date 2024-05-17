@@ -9,16 +9,18 @@ public class UnitOfWork : IUnitOfWork
     private readonly MedProDbContext _dbContext;
     private IDbContextTransaction _transaction;
 
-    public UnitOfWork(MedProDbContext dbContext, ISpecialityRepository specialities, IUserRepository users)
+    public UnitOfWork(MedProDbContext dbContext, ISpecialityRepository specialities, IUserRepository users, IPatientRepository patients)
     {
         _dbContext = dbContext;
         Specialities = specialities;
         Users = users;
+        Patients = patients;
     }
     
     public ISpecialityRepository Specialities { get; }
     public IUserRepository Users { get; }
-    
+    public IPatientRepository Patients { get; }
+
     // To use the transaction you need to first call the BeginTransactionAsync() method, then
     // Do the operation with objects (add/update/delete) and call CompleteAsync(), and finally
     // Call the CommitAsync() to commit all changes

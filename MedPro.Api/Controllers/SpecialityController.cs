@@ -44,7 +44,7 @@ namespace MedPro.Api.Controllers
         {
             var id = await _mediator.Send(command);
 
-            return CreatedAtAction(nameof(Post), new { id = id }, command);
+            return CreatedAtAction(nameof(Post), new { id = id });
         }
         
         [HttpPut("{id}")]

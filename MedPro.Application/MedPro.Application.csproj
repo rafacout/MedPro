@@ -13,6 +13,8 @@
 
     <ItemGroup>
       <Folder Include="Commands\Speciality\" />
+      <Folder Include="Queries\Patient\GetPatientByDocument\" />
+      <Folder Include="Queries\Patient\GetPatientByPhone\" />
     </ItemGroup>
 
     <ItemGroup>
