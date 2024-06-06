@@ -16,7 +16,7 @@ public class UpdateSpecialityCommandHandler : IRequestHandler<UpdateSpecialityCo
     {
         var speciality = await _unitOfWork.Specialities.GetByIdAsync(request.Id);
 
-        if (speciality != null)
+        if (speciality is not null)
         {
             speciality.Update(request.Name, request.Description);
             await _unitOfWork.Specialities.UpdateAsync(speciality);

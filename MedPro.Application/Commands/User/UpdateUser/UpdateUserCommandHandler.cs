@@ -17,7 +17,7 @@ public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand, Unit>
     {
         var user = await _unitOfWork.Users.GetByIdAsync(request.Id);
 
-        if (user != null)
+        if (user is not null)
         {
             user.Update(request.UserName, request.Password, request.Role);
             await _unitOfWork.Users.UpdateAsync(user);

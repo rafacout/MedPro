@@ -34,7 +34,7 @@ public class UserRepository : IUserRepository
     {
         var user = await _dbContext.Users.FirstOrDefaultAsync(s => s.Id == id);
 
-        if (user != null) { 
+        if (user is not null) { 
             _dbContext.Users.Remove(user);
         }
     }

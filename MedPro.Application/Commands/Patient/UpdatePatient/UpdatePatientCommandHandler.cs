@@ -21,7 +21,7 @@ namespace MedPro.Application.Commands.Patient.UpdatePatient
         {
             var patient = await _unitOfWork.Patients.GetByIdAsync(request.Id);
 
-            if (patient != null)
+            if (patient is not null)
             {
                 patient.Update(request.UserId, request.FirstName, request.LastName, request.BirthDate,
                     request.PhoneNumber, request.Email, request.DocumentNumber,

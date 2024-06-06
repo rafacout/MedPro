@@ -63,7 +63,7 @@ namespace MedPro.Infrastructure.Persistence.Repositories
         {
             var patient = await _dbContext.Patients.FirstOrDefaultAsync(s => s.Id == id);
 
-            if (patient != null)
+            if (patient is not null)
             {
                 _dbContext.Patients.Remove(patient);
             }

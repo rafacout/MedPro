@@ -48,7 +48,7 @@ public class SpecialityRepository : ISpecialityRepository
     {
         var speciality = await _dbContext.Specialities.FirstOrDefaultAsync(s => s.Id == id);
 
-        if (speciality != null) { 
+        if (speciality is not null) { 
             _dbContext.Specialities.Remove(speciality);
         }
     }
