@@ -18,6 +18,8 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Guid>
     
     public async Task<Guid> Handle(CreateUserCommand request, CancellationToken cancellationToken)
     {
+        if (request == null) throw new ArgumentNullException(nameof(request));
+        
         var hashedPassword = _authService.ComputeSha256Hash(request.Password);
         var user = new Domain.Entities.User(request.UserName, hashedPassword, request.Role);
         var id = await _unitOfWork.Users.CreateAsync(user);

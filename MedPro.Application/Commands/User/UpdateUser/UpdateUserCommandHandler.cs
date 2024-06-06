@@ -15,6 +15,8 @@ public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand, Unit>
     
     public async Task<Unit> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
     {
+        if (request == null) throw new ArgumentNullException(nameof(request));
+        
         var user = await _unitOfWork.Users.GetByIdAsync(request.Id);
 
         if (user is not null)

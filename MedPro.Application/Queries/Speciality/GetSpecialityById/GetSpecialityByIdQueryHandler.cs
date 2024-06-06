@@ -16,6 +16,8 @@ public class GetSpecialityByIdQueryHandler : IRequestHandler<GetSpecialityByIdQu
     
     public async Task<SpecialityViewModel?> Handle(GetSpecialityByIdQuery request, CancellationToken cancellationToken)
     {
+        if (request == null) throw new ArgumentNullException(nameof(request));
+        
         var speciality = await _specialityRepository.GetByIdAsync(request.Id);
 
         if (speciality == null)

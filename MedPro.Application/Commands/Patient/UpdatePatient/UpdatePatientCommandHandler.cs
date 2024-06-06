@@ -19,6 +19,8 @@ namespace MedPro.Application.Commands.Patient.UpdatePatient
 
         public async Task<Unit> Handle(UpdatePatientCommand request, CancellationToken cancellationToken)
         {
+            if (request == null) throw new ArgumentNullException(nameof(request));
+            
             var patient = await _unitOfWork.Patients.GetByIdAsync(request.Id);
 
             if (patient is not null)

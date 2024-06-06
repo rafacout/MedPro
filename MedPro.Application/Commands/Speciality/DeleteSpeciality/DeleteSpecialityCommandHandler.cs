@@ -18,6 +18,8 @@ public class DeleteSpecialityCommandHandler : IRequestHandler<DeleteSpecialityCo
 
     public async Task<Unit> Handle(DeleteSpecialityCommand command, CancellationToken cancellationToken)
     {
+        if (command == null) throw new ArgumentNullException(nameof(command));
+        
         await _unitOfWork.Users.DeleteAsync(command.Id);
         await _unitOfWork.CompleteAsync();
         return Unit.Value;

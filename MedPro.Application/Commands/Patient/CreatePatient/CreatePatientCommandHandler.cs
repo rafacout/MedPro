@@ -20,6 +20,8 @@ namespace MedPro.Application.Commands.Patient.CreatePatient
 
         public async Task<Guid> Handle(CreatePatientCommand request, CancellationToken cancellationToken)
         {
+            if (request == null) throw new ArgumentNullException(nameof(request));
+            
             var patient = new Domain.Entities.Patient(request.UserId, request.FirstName, request.LastName,
                 request.BirthDate, request.PhoneNumber,
                 request.Email, request.DocumentNumber, request.BloodTypeEnum, request.Address, request.Heigth,

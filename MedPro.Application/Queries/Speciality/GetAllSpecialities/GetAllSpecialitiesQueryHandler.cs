@@ -19,6 +19,8 @@ public class GetAllSpecialitiesQueryHandler : IRequestHandler<GetAllSpecialities
 
     public async Task<PaginationResult<SpecialityViewModel>> Handle(GetAllSpecialitiesQuery request, CancellationToken cancellationToken)
     {
+        if (request == null) throw new ArgumentNullException(nameof(request));
+        
         var paginationResult = await _specialityRepository.GetAllAsync(request.Query, request.Page);
     
         var viewModel = paginationResult

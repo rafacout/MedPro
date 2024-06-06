@@ -15,6 +15,8 @@ public class GetPatientByIdQueryHandler : IRequestHandler<GetPatientByIdQuery, P
     
     public async Task<PatientViewModel?> Handle(GetPatientByIdQuery request, CancellationToken cancellationToken)
     {
+        if (request == null) throw new ArgumentNullException(nameof(request));
+        
         var patient = await _patientRepository.GetByIdAsync(request.Id);
 
         if (patient == null)

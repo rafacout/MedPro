@@ -18,6 +18,8 @@ public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, LoginUs
 
     public async Task<LoginUserViewModel?> Handle(LoginUserCommand request, CancellationToken cancellationToken)
     {
+        if (request == null) throw new ArgumentNullException(nameof(request));
+        
         var hashPassword = _authService.ComputeSha256Hash(request.Password);
         var user = await _userRepository.GetByEmailAndPasswordAsync(request.Email, hashPassword);
         

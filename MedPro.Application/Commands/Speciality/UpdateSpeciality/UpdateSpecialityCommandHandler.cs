@@ -14,6 +14,8 @@ public class UpdateSpecialityCommandHandler : IRequestHandler<UpdateSpecialityCo
 
     public async Task<Unit> Handle(UpdateSpecialityCommand request, CancellationToken cancellationToken)
     {
+        if (request == null) throw new ArgumentNullException(nameof(request));
+        
         var speciality = await _unitOfWork.Specialities.GetByIdAsync(request.Id);
 
         if (speciality is not null)

@@ -8,7 +8,7 @@ public class AppointmentInputModel
     public Guid DoctorId { get; set; }
     public Guid PatientId { get; set; }
     public Guid ServiceId { get; set; }
-    public string Description { get; set; }
+    public string? Description { get; set; }
     public Guid InsuranceId { get; set; }
     public AppointmentTypeEnum AppointmentTypeEnum { get; set; }
 }

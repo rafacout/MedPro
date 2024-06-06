@@ -16,6 +16,8 @@ public class GetAllPatientsQueryHandler : IRequestHandler<GetAllPatientsQuery, P
     
     public async Task<PaginationResult<PatientViewModel>> Handle(GetAllPatientsQuery request, CancellationToken cancellationToken)
     {
+        if (request == null) throw new ArgumentNullException(nameof(request));
+        
         var paginationResult = await _patientRepository.GetAllAsync(request.Query, request.Page);
     
         var viewModel = paginationResult

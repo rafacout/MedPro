@@ -19,6 +19,8 @@ namespace MedPro.Application.Commands.Patient.DeletePatient
 
         public async Task<Unit> Handle(DeletePatientCommand request, CancellationToken cancellationToken)
         {
+            if (request == null) throw new ArgumentNullException(nameof(request));
+            
             await _unitOfWork.Patients.DeleteAsync(request.Id);
             await _unitOfWork.CompleteAsync();
             return Unit.Value;

@@ -16,6 +16,8 @@ public class CreateSpecialityCommandHandler : IRequestHandler<CreateSpecialityCo
     
     public async Task<Guid> Handle(CreateSpecialityCommand request, CancellationToken cancellationToken)
     {
+        if (request == null) throw new ArgumentNullException(nameof(request));
+        
         var speciality = new Speciality(request.Name, request.Description);
         var id = await _unitOfWork.Specialities.CreateAsync(speciality);
         await _unitOfWork.CompleteAsync();
