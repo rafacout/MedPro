@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FluentAssertions;
 using MedPro.Domain.Entities;
 
 namespace MedPro.UnitTest.Domain
@@ -20,8 +21,8 @@ namespace MedPro.UnitTest.Domain
             var speciality = new Speciality(name, description);
 
             // Assert
-            Assert.Equal(name, speciality.Name);
-            Assert.Equal(description, speciality.Description);
+            name.Should().Be(speciality.Name);
+            description.Should().Be(speciality.Description);
         }
 
         [Fact]
@@ -36,9 +37,8 @@ namespace MedPro.UnitTest.Domain
             speciality.Update(name, description);
 
             // Assert
-            Assert.Equal(name, speciality.Name);
-            Assert.Equal(description, speciality.Description);
-            
+            name.Should().Be(speciality.Name);
+            description.Should().Be(speciality.Description);
         }
     }
 }

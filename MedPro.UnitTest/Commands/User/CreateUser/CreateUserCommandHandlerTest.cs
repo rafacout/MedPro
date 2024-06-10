@@ -1,8 +1,10 @@
-﻿using JetBrains.Annotations;
+﻿using FluentAssertions;
+using JetBrains.Annotations;
 using MedPro.Application.Commands.User.CreateUser;
 using MedPro.Domain.Repositories;
 using MedPro.Infrastructure.Auth;
 using MedPro.Infrastructure.Persistence.Repositories;
+using MedPro.UnitTest.FakeData;
 using Moq;
 
 namespace MedPro.UnitTest.Commands.User.CreateUser;
@@ -10,7 +12,6 @@ namespace MedPro.UnitTest.Commands.User.CreateUser;
 [TestSubject(typeof(CreateUserCommandHandler))]
 public class CreateUserCommandHandlerTest
 {
-
     [Fact]
     public async Task User_CreateUser_Success()
     {
@@ -18,11 +19,11 @@ public class CreateUserCommandHandlerTest
         var unitOfWorkMock = new Mock<IUnitOfWork>();
         var authServiceMock = new Mock<IAuthService>();
 
-        var user = new MedPro.Domain.Entities.User("rafacout@gmail.com", "123456", "admin");
-        
+        var user = new UserFaker().Generate();
+
         unitOfWorkMock.Setup(x =>
-            x.Users.CreateAsync(user).Result)
-            .Returns(Guid.NewGuid());
+                x.Users.CreateAsync(It.IsAny<MedPro.Domain.Entities.User>()))
+            .ReturnsAsync(Guid.NewGuid());
 
         authServiceMock.Setup(x => x.ComputeSha256Hash(user.Password))
             .Returns("4g5fd6sg4f5d6gsdf4g6fds54gdsf");
@@ -40,9 +41,9 @@ public class CreateUserCommandHandlerTest
         var result = await userCommandHandler.Handle(request, new CancellationToken());
 
         //Assert
-        Assert.IsType<Guid>(result);
-        //Assert.NotEqual(Guid.Empty, result);
-        
+        result.Should().NotBeEmpty();
+        result.Should().NotBe(Guid.Empty);
+
         unitOfWorkMock.Verify(x => x.Users.CreateAsync(It.IsAny<MedPro.Domain.Entities.User>()), Times.Once);
     }
 }
